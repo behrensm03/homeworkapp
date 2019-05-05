@@ -96,9 +96,18 @@ class MessagesViewController: UIViewController, AssignmentInfo {
         let sendColor = UIColor(red: 0, green: 137/255, blue: 249/255, alpha:  1)
         sendButton.setTitleColor(sendColor, for: .normal)
         sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        sendButton.showsTouchWhenHighlighted = true
+        sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+        
         messageInputContainerView.addSubview(sendButton)
         
         setupConstraints2()
+    }
+    
+    @objc func sendButtonTapped(){
+//        let newMessage = Message(id: <#T##Int#>, message: inputTextField.text, user: <#T##String#>, time: <#T##String#>)
+//        messages.append(newMessage)
+          inputTextField.text = ""
     }
     
     func setupConstraints2(){
