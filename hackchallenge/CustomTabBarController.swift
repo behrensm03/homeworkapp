@@ -22,11 +22,6 @@ class CustomTabBarController: UITabBarController {
         browseNavigationController.tabBarItem.image = UIImage(named: "search")
         browseNavigationController.title = "Browse"
         
-        let groupViewController = AllGroupsViewController()
-        let groupNavigationController = UINavigationController(rootViewController: groupViewController)
-        groupNavigationController.tabBarItem.image = UIImage(named: "chat")
-        groupNavigationController.title = "Groups"
-        
-        viewControllers = [navigationController, browseNavigationController, groupNavigationController]
+        viewControllers = [navigationController, browseNavigationController]
     }
 }

@@ -17,6 +17,7 @@ class BrowseViewController: UIViewController {
     var originalCourses: [Class]!
     var displayedCourses: [Class]!
     
+    let refreshControl = UIRefreshControl()
     let reuseIdentifier = "reuse"
     
     override func viewDidLoad() {
@@ -40,12 +41,13 @@ class BrowseViewController: UIViewController {
         searchBar.placeholder = "Find a class"
         searchBar.delegate = self
         
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
         classTableView = UITableView()
         classTableView.translatesAutoresizingMaskIntoConstraints = false
         classTableView.register(ClassTableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         classTableView.dataSource = self
         classTableView.delegate = self
-        
+        classTableView.refreshControl = refreshControl
         view.addSubview(classTableView)
         
         setupConstraints()
@@ -64,6 +66,13 @@ class BrowseViewController: UIViewController {
             //classTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             classTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
+    }
+    
+    @objc func refreshTable() {
+        DispatchQueue.main.async {
+            self.classTableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     
     func getCourses() {

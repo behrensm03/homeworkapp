@@ -18,6 +18,7 @@ class ClassViewController: UIViewController {
     var originalGroups: [Assignment] = []
     var displayedGroups: [Assignment] = []
     
+    let refreshControl = UIRefreshControl()
     let reuse = "assignmentReuse"
     
     init(relatedClass: Class) {
@@ -28,25 +29,24 @@ class ClassViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Groups - \(classForView.getTitle())"
         view.backgroundColor = .white
         //let mainColor: UIColor = UIColor(red: 193/255, green: 94/255, blue: 178/255, alpha: 1.0)
-//        let group1 = Group(relatedClass: classForView, name: "Problem set 1")
-//        let group2 = Group(relatedClass: classForView, name: "Problem set 2")
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addGroup))
         self.navigationItem.setRightBarButton(addButton, animated: true)
         
         updateGroups()
         
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
         groupsTableView = UITableView()
         groupsTableView.translatesAutoresizingMaskIntoConstraints = false
         groupsTableView.register(GroupTableViewCell.self, forCellReuseIdentifier: reuse)
         groupsTableView.dataSource = self
         groupsTableView.delegate = self
+        groupsTableView.refreshControl = refreshControl
         view.addSubview(groupsTableView)
         
         searchBar = UISearchBar()
@@ -81,6 +81,13 @@ class ClassViewController: UIViewController {
                                                 self.originalGroups = self.displayedGroups
                                                 self.groupsTableView.reloadData()
         })
+    }
+    
+    @objc func refreshTable() {
+        DispatchQueue.main.async {
+            self.groupsTableView.reloadData()
+            self.refreshControl.endRefreshing()
+        }
     }
     
     @objc func addGroup() {
