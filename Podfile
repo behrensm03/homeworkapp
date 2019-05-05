@@ -7,5 +7,9 @@ target 'hackchallenge' do
 
   # Pods for hackchallenge
   pod 'Alamofire'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 
 end
