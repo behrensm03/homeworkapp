@@ -28,6 +28,8 @@ class MessagesViewController: UIViewController, AssignmentInfo {
         super.viewDidLoad()
         title = "Messages - \(assignmentInfo.name)"
         
+        tabBarController?.tabBar.isHidden = true
+        
         let mainColor: UIColor = UIColor(red: 193/255, green: 94/255, blue: 178/255, alpha: 1.0)
         view.backgroundColor = .white
         self.navigationController!.navigationBar.barTintColor = mainColor

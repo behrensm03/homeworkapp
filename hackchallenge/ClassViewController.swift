@@ -21,6 +21,12 @@ class ClassViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     let reuse = "assignmentReuse"
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false 
+    }
+    
     init(relatedClass: Class) {
         classForView = relatedClass
         super.init(nibName: nil, bundle: nil)
