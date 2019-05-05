@@ -11,6 +11,7 @@ import UIKit
 class CustomTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         
         let viewController = ViewController()
         let navigationController = UINavigationController(rootViewController: viewController)
