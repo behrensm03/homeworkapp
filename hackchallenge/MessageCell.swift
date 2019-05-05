@@ -10,31 +10,26 @@ import UIKit
 
 class MessageCell: UICollectionViewCell {
     var messageTextView: UITextView
+    var messageBubbleView: UIView
     
     override init(frame: CGRect) {
+        messageBubbleView = UIView()
         messageTextView = UITextView(frame: .zero)
         super.init(frame: .zero)
         messageTextView.translatesAutoresizingMaskIntoConstraints = false
-        messageTextView.font = UIFont.systemFont(ofSize: 16)
+        messageTextView.font = UIFont.systemFont(ofSize: 18)
         messageTextView.isEditable = false
-        messageTextView.backgroundColor = .lightGray
         messageTextView.textColor = .black
+        messageTextView.backgroundColor = .clear
+        messageBubbleView.backgroundColor = UIColor(white: 0.95, alpha: 1)
+        messageBubbleView.layer.cornerRadius = 15
+        messageBubbleView.layer.masksToBounds = true
+        contentView.addSubview(messageBubbleView)
         contentView.addSubview(messageTextView)
-        
-        setupConstraints()
     }
     
     func configure(for message: Message) {
         messageTextView.text = message.message
-    }
-    
-    func setupConstraints(){
-        NSLayoutConstraint.activate([
-                messageTextView.topAnchor.constraint(equalTo: contentView.topAnchor),
-                messageTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-                messageTextView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-                messageTextView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            ])
     }
     
     required init?(coder aDecoder: NSCoder) {
