@@ -108,6 +108,8 @@ class MessagesViewController: UIViewController, AssignmentInfo {
 //        let newMessage = Message(id: <#T##Int#>, message: inputTextField.text, user: <#T##String#>, time: <#T##String#>)
 //        messages.append(newMessage)
           inputTextField.text = ""
+//          NetworkManager.addMessageToAssignment(classId: assignmentInfo.class_id, assignmentId: assignmentInfo.id, message: newMessage, user: <#T##String#>, time: <#T##String#>, completion: <#T##(Message) -> Void#>)
+          
     }
     
     func setupConstraints2(){
