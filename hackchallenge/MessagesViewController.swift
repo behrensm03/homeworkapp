@@ -20,6 +20,11 @@ class MessagesViewController: UIViewController, AssignmentInfo {
     let reuseIdentifier = "reuse"
     
     var messages: [Message]!
+    
+    var messageInputContainerView: UIView!
+    var inputTextField: UITextField!
+    var sendButton: UIButton!
+    
     var assignmentInfo: Assignment!
     var timer: Timer!
     weak var delegate: ClassViewController?
@@ -42,6 +47,11 @@ class MessagesViewController: UIViewController, AssignmentInfo {
         layout.minimumInteritemSpacing = padding
         layout.minimumLineSpacing = padding
         
+        messageInputContainerView = UIView()
+        messageInputContainerView.translatesAutoresizingMaskIntoConstraints = false
+        messageInputContainerView.backgroundColor = .white
+        view.addSubview(messageInputContainerView)
+        
         messagesCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         messagesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         messagesCollectionView.backgroundColor = .white
@@ -51,14 +61,72 @@ class MessagesViewController: UIViewController, AssignmentInfo {
         view.addSubview(messagesCollectionView)
         
         setupConstraints()
+        setupInputComponents()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: ViewController.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: ViewController.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= keyboardFrame.height
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        if self.view.frame.origin.y != 0{
+            self.view.frame.origin.y += keyboardFrame.height
+        }
+    }
+    
+    func setupInputComponents(){
+        inputTextField = UITextField()
+        inputTextField.translatesAutoresizingMaskIntoConstraints = false
+        inputTextField.placeholder = "Enter message..."
+        messageInputContainerView.addSubview(inputTextField)
+        
+        sendButton = UIButton()
+        sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.setTitle("Send", for: .normal)
+        let sendColor = UIColor(red: 0, green: 137/255, blue: 249/255, alpha:  1)
+        sendButton.setTitleColor(sendColor, for: .normal)
+        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        messageInputContainerView.addSubview(sendButton)
+        
+        setupConstraints2()
+    }
+    
+    func setupConstraints2(){
+        NSLayoutConstraint.activate([
+            inputTextField.topAnchor.constraint(equalTo: messageInputContainerView.topAnchor),
+            inputTextField.bottomAnchor.constraint(equalTo: messageInputContainerView.bottomAnchor),
+            inputTextField.leftAnchor.constraint(equalTo: messageInputContainerView.leftAnchor, constant: 8),
+            inputTextField.rightAnchor.constraint(equalTo: messageInputContainerView.rightAnchor, constant: -60),
+
+            sendButton.topAnchor.constraint(equalTo: messageInputContainerView.topAnchor),
+            sendButton.bottomAnchor.constraint(equalTo: messageInputContainerView.bottomAnchor),
+            sendButton.leftAnchor.constraint(equalTo: inputTextField.rightAnchor),
+            sendButton.rightAnchor.constraint(equalTo: messageInputContainerView.rightAnchor, constant: -8)
+            ])
     }
     
     func setupConstraints(){
         NSLayoutConstraint.activate([
+            messageInputContainerView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            messageInputContainerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            messageInputContainerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            messageInputContainerView.heightAnchor.constraint(equalToConstant: 48),
+            
             messagesCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            messagesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            messagesCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -48),
             messagesCollectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            messagesCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor)
+            messagesCollectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            
             ])
     }
     
