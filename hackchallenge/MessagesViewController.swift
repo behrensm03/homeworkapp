@@ -32,6 +32,7 @@ class MessagesViewController: UIViewController, AssignmentInfo {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
         title = "Messages - \(assignmentInfo.name)"
         
         tabBarController?.tabBar.isHidden = true
@@ -91,14 +92,15 @@ class MessagesViewController: UIViewController, AssignmentInfo {
         inputTextField.placeholder = "Enter message..."
         messageInputContainerView.addSubview(inputTextField)
         
-        sendButton = UIButton()
+        sendButton = UIButton(type: .system)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
         sendButton.setTitle("Send", for: .normal)
         let sendColor = UIColor(red: 0, green: 137/255, blue: 249/255, alpha:  1)
         sendButton.setTitleColor(sendColor, for: .normal)
         sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         sendButton.showsTouchWhenHighlighted = true
-        sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(sendButtonTapped))
+        sendButton.addGestureRecognizer(tap)
         
         messageInputContainerView.addSubview(sendButton)
         
@@ -205,6 +207,8 @@ extension MessagesViewController: UICollectionViewDelegateFlowLayout{
 }
 
 extension UIViewController {
+    
+    
     func hideKeyboardWhenTappedAround() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
         tap.cancelsTouchesInView = false

@@ -38,6 +38,7 @@ class BrowseViewController: UIViewController {
         searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.autocorrectionType = .no
+        searchBar.barTintColor = .white
         view.addSubview(searchBar)
         searchBar.placeholder = "Find a class"
         searchBar.delegate = self
