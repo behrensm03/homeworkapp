@@ -59,6 +59,7 @@ class ClassViewController: UIViewController {
         searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.autocorrectionType = .no
+        searchBar.barTintColor = .white
         view.addSubview(searchBar)
         searchBar.placeholder = "Find a group in " + classForView.getTitle()
         searchBar.delegate = self
