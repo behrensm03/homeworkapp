@@ -22,6 +22,7 @@
 		1261855F226F61D3004815D2 /* Class.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1261855E226F61D3004815D2 /* Class.swift */; };
 		12618561226F620C004815D2 /* ClassTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12618560226F620C004815D2 /* ClassTableViewCell.swift */; };
 		12618563226F6DE4004815D2 /* RecentGroupCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12618562226F6DE4004815D2 /* RecentGroupCollectionViewCell.swift */; };
+		12BF5813227FCDB100F87A4C /* untitled.png in Resources */ = {isa = PBXBuildFile; fileRef = 12BF5812227FCDB000F87A4C /* untitled.png */; };
 		12CD1DC0227E0DBC00536C35 /* AddGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12CD1DBF227E0DBC00536C35 /* AddGroupViewController.swift */; };
 		78E293BE7FEE58AEDBCC965D /* Pods_hackchallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E954EFE1D84A91239F4A65F /* Pods_hackchallenge.framework */; };
 		CA78C985227659430059526C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78C984227659430059526C /* User.swift */; };
@@ -50,6 +51,7 @@
 		1261855E226F61D3004815D2 /* Class.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Class.swift; sourceTree = "<group>"; };
 		12618560226F620C004815D2 /* ClassTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassTableViewCell.swift; sourceTree = "<group>"; };
 		12618562226F6DE4004815D2 /* RecentGroupCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentGroupCollectionViewCell.swift; sourceTree = "<group>"; };
+		12BF5812227FCDB000F87A4C /* untitled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = untitled.png; path = ../../untitled.png; sourceTree = "<group>"; };
 		12CD1DBF227E0DBC00536C35 /* AddGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGroupViewController.swift; sourceTree = "<group>"; };
 		4E954EFE1D84A91239F4A65F /* Pods_hackchallenge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_hackchallenge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		64F255BD14B41A022A903F57 /* Pods-hackchallenge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-hackchallenge.release.xcconfig"; path = "Target Support Files/Pods-hackchallenge/Pods-hackchallenge.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				12618551226F6188004815D2 /* Assets.xcassets */,
 				12618553226F6188004815D2 /* LaunchScreen.storyboard */,
 				12618556226F6188004815D2 /* Info.plist */,
+				12BF5812227FCDB000F87A4C /* untitled.png */,
 			);
 			path = hackchallenge;
 			sourceTree = "<group>";
@@ -208,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12BF5813227FCDB100F87A4C /* untitled.png in Resources */,
 				12618555226F6188004815D2 /* LaunchScreen.storyboard in Resources */,
 				12618552226F6188004815D2 /* Assets.xcassets in Resources */,
 			);
